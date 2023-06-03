@@ -26,6 +26,30 @@ const contactController = {
       console.log(e);
     }
   },
+  getContact: async (req, res) => {
+    try {
+      const SQL = "SELECT * FROM contact";
+      const [rows, fields] = await pool.query(SQL);
+      res.status(200).json({
+        data: rows,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getContactById: async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      const SQL = "SELECT * FROM contact WHERE id_contact = ?";
+      const [rows, fields] = await pool.query(SQL, [id]);
+      res.status(200).json({
+        data: rows[0],
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
 
 module.exports = contactController;

@@ -68,6 +68,7 @@ const productsController = {
         date,
       ]
     );
+    console.log(result);
     if (err) {
       console.log(err);
     } else {
