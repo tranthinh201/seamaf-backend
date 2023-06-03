@@ -140,16 +140,13 @@ const productsController = {
   deleteProduct: async (req, res) => {
     try {
       const { id } = req.params;
+      await pool.query("DELETE FROM `image` WHERE id_product = ?", [id]);
+
       const SQL = "DELETE FROM `product` WHERE id_product = ?";
       const [result, err] = await pool.query(SQL, [id]);
-      if (err) {
-        console.log(err);
-      } else {
-        await pool.query("DELETE FROM `image` WHERE id_product = ?", [id]);
-        res.status(200).json({
-          data: "Delete success!",
-        });
-      }
+      res.status(200).json({
+        data: "Delete success!",
+      });
     } catch (err) {
       res.status(500).json({
         state: "error",
