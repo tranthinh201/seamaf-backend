@@ -72,7 +72,7 @@ const productsController = {
     if (err) {
       console.log(err);
     } else {
-      if (thumbnail) {
+      if (thumbnail.length > 1) {
         thumbnail.slice(1).map((image) => {
           pool.query("INSERT INTO image(id_product, path) VALUES (?, ?)", [
             result.insertId,
@@ -108,7 +108,7 @@ const productsController = {
     if (err) {
       console.log(err);
     } else {
-      if (thumbnail) {
+      if (thumbnail.length > 1) {
         thumbnail.slice(1).map((image) => {
           pool.query("INSERT INTO image(id_product, path) VALUES (?, ?)", [
             id,
